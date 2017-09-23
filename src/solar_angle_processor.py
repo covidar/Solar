@@ -21,9 +21,6 @@ import solar_geospatial as sg
 import solar_rasterio as sr
 import solar_utility as su
 
-# Debugging.
-import skimage.io as io
-
 warnings.filterwarnings("ignore")
 
 # Required to sort by the first value, e.g. tmp[0]
@@ -306,6 +303,8 @@ def get_radiation_product(output_path, base, sunrise, sunset, sunrise_time, suns
     (x_sec, y_rad) = precompute_radiation(sunrise_time, sunset_time, local_date, time_zone, lat, lon)
 
     # Iterate across the image.
+    success = False
+    radiation = None
     if sunrise.shape == sunset.shape: 
         (height, width) = sunrise.shape
         radiation = su.create_image((height, width), no_data)
@@ -314,13 +313,16 @@ def get_radiation_product(output_path, base, sunrise, sunset, sunrise_time, suns
                 sunrise_secs = sunrise[row][col]
                 sunset_secs = sunset[row][col]
                 if sunrise_secs != no_data and sunset_secs != no_data:
-                    radiation[row][col] = get_radiation(sunrise_secs, sunset_secs, x_sec, y_rad)
+                    radiation[row][col] = get_radiation(sunrise_secs, sunset_secs, x_sec, y_rad) 
+        success = True      
+        # name = os.path.join(output_path, base + '_radiation.tif')
+        # logging.info('Saving radiation data (%s)' % (name))
+        # io.imsave(name, radiation)
         
-        name = os.path.join(output_path, base + '_radiation.tif')
-        logging.info('Saving radiation data (%s)' % (name))
-        io.imsave(name, radiation)
     else:
         logging.error('Sunrise and sunset shape are different!')
+    
+    return success, radiation
 
 def precompute_radiation(sunrise_time, sunset_time, local_date, time_zone, lat, lon):
     """Precompute the radiation."""
@@ -506,10 +508,16 @@ def process_surface(surface, metadata, local_date, sunrise_time, sunset_time, ra
 
         # Radiation.
         if radiation:
-            get_radiation_product(output_path, base, sunrise, sunset, sunrise_time, sunset_time, local_date, time_zone, lat, lon, no_data)
+            (success, radiation_data) = get_radiation_product(output_path, base, sunrise, sunset, 
+                                                              sunrise_time, sunset_time,
+                                                              local_date, time_zone, lat, lon, no_data)
+            if success:
+                name = os.path.join(output_path, base + '_radiation.tif')
+                logging.info('Saving radiation data (%s)' % (name))
+                sr.write_output(name, radiation_data, profile)
+                
         bar.update(1)
 
         logging.info('The end...')
-
 
     return light_in_seconds
