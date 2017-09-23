@@ -62,7 +62,7 @@ This is also runnable by using the run_example.sh script in the root folder.
 
 ## Results
 
-Link to some images.
+![Percent Light](/examples/Patch_DEM_2016-09-14_light_perc.png)
 
 # Tests
 These are under developement and will evolve into validating the science when ground truth is available. These will likely steer the develeopment work.
