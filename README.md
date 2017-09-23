@@ -6,32 +6,32 @@ This is an application that takes DEM's, typically made from drone data, and use
 Given that we have been given the opportunity to create our own maps and indeed surface models through drones it made sense to enable solar analysis of the data. Other web based products are based on old data, sometimes many years out of date, and this allows the computation hours after collection.
 
 ## Process flow
-..* Resample the surface model to a higher resolution.
-..* Given the date and the location workout the Sun azimuth.
-..* Rotate the terrain so that the sun is at the bottom.
-..* With the Sun altitude work out if the sun would be blocked by the adjacent pixel.
-..* Compute the effective sunrise and sunset for each pixel in the surface.
-..* Present the results.
+* Resample the surface model to a higher resolution.
+* Given the date and the location workout the Sun azimuth.
+* Rotate the terrain so that the sun is at the bottom.
+* With the Sun altitude work out if the sun would be blocked by the adjacent pixel.
+* Compute the effective sunrise and sunset for each pixel in the surface.
+* Present the results.
 
 ## Limitations
-..* If a pixel is impinged it is considered to be black.
-..* The process space is the DEM itself and of course any pixel could be impinged by a huge mountain next to the processed surface.
-..* The effective sunrise and sunset for each pixel is an approximation given the number of time increments chosen for the computation. More accurate values require longer processing time.
-..* The radiation product is based on a clear sky model, i.e. a perfect day!
+* If a pixel is impinged it is considered to be black.
+* The process space is the DEM itself and of course any pixel could be impinged by a huge mountain next to the processed surface.
+* The effective sunrise and sunset for each pixel is an approximation given the number of time increments chosen for the computation. More accurate values require longer processing time.
+* The radiation product is based on a clear sky model, i.e. a perfect day!
 
 # Dependencies
 This code has a number of dependencies with varying degrees of complexity for installation. However, choices have been made to make this process simple.
 
-..* [futures](https://pypi.python.org/pypi/futures)
-..* [matplotlib](https://matplotlib.org/)
-..* [osgeo](https://pypi.python.org/pypi/GDAL)
-..* [nose](http://nose.readthedocs.io/en/latest/)
-..* [pysolar](https://pypi.python.org/pypi/Pysolar)
-..* [pytz](https://pypi.python.org/pypi/pytz)
-..* [rasterio](https://github.com/mapbox/rasterio)
-..* [skimage](http://scikit-image.org/)
-..* [tqdm](https://pypi.python.org/pypi/tqdm)
-..* [utm](https://pypi.python.org/pypi/utm)
+* [futures](https://pypi.python.org/pypi/futures)
+* [matplotlib](https://matplotlib.org/)
+* [osgeo](https://pypi.python.org/pypi/GDAL)
+* [nose](http://nose.readthedocs.io/en/latest/)
+* [pysolar](https://pypi.python.org/pypi/Pysolar)
+* [pytz](https://pypi.python.org/pypi/pytz)
+* [rasterio](https://github.com/mapbox/rasterio)
+* [skimage](http://scikit-image.org/)
+* [tqdm](https://pypi.python.org/pypi/tqdm)
+* [utm](https://pypi.python.org/pypi/utm)
 
 # Docker
 TBD
