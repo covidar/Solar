@@ -3,16 +3,17 @@
 """Geospatial code."""
 
 import logging
-import utm
 import osgeo.osr as osr
+import utm
 
-def get_utm_epsg_from_epsg(epsg_code, x, y):
+def get_utm_epsg_from_epsg(epsg_code, ground_x, ground_y):
+    """Get the UTM epsg code from a code and a point."""
     src = osr.SpatialReference()
     src.ImportFromEPSG(epsg_code)
     dst = osr.SpatialReference()
     dst.ImportFromEPSG(4326)
-    ct = osr.CoordinateTransformation(src, dst)
-    (lon, lat, _) = ct.TransformPoint(x, y)
+    trans = osr.CoordinateTransformation(src, dst)
+    (lon, lat, _) = trans.TransformPoint(ground_x, ground_y)
     (easting, northing, zone_number, zone_letter) = utm.from_latlon(lat, lon)
     logging.info('E: %f N: %f Zone: %d Letter: %s' % (easting, northing, zone_number, zone_letter))
     if lat >= 0:

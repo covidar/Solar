@@ -2,8 +2,8 @@
 
 """Utility functions."""
 
-import logging
 from datetime import datetime, date, time
+import logging
 import numpy as np
 from pysolar.util import get_sunrise_sunset
 import pytz
@@ -78,6 +78,7 @@ def get_processing_times(sunrise, sunset, increments):
     return times
 
 def log(level, log_message, stdout=False):
+    """Logging simplification."""
     if level == 'debug':
         logging.debug(log_message)
     if level == 'info':

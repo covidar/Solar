@@ -2,15 +2,11 @@
 
 """Raster code."""
 
-#export PYTHONWARNINGS="ignore" - to disable rasterio warnings
-#export PYTHONWARNINGS="default" - enable them
-
 import logging
 import numpy as np
-
+import osgeo.gdal as gdal
 import rasterio
 from skimage.transform import rotate
-import osgeo.gdal as gdal
 
 class SolarImage:
     """Solar image class."""
@@ -128,8 +124,8 @@ def rotate_image(image, rotation_angle, no_data=-9999):
     Rotate an image about an angle.
     Rotation angle in degrees in counter-clockwise direction.
     """
-    rotated_image = rotate(image, rotation_angle, order=0, cval=no_data, 
-        resize=False, preserve_range=True)
+    rotated_image = rotate(image, rotation_angle, order=0, cval=no_data,
+                           resize=False, preserve_range=True)
     return rotated_image.copy()
 
 def resample_image(src, dst, srcEpsg, dstEpsg, gsd, no_data):
@@ -139,7 +135,7 @@ def resample_image(src, dst, srcEpsg, dstEpsg, gsd, no_data):
         warp_opt = gdal.WarpOptions(xRes=gsd, yRes=gsd, srcNodata=no_data,
             dstNodata=no_data, srcSRS='EPSG:' + str(srcEpsg), dstSRS='EPSG:' + str(dstEpsg))
         gdal.Warp(destNameOrDestDS=dst, srcDSOrSrcDSTab=src, options=warp_opt)
-    except:
+    except IOError:
         logging.error('Problem resampling %s', src)
         return False
     return True

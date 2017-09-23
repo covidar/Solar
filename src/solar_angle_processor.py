@@ -2,14 +2,14 @@
 
 """Angle processing."""
 
+import concurrent.futures
 import logging
 import math
-import os
-import numpy as np
-import tempfile
 import matplotlib.pyplot as plt
+import numpy as np
+import os
+import tempfile
 import queue
-import concurrent.futures
 import warnings
 
 # Solar installed.
@@ -295,10 +295,10 @@ def get_colormap(output_path, base, title, sunrise_time, sunset_time, percentage
     fig.savefig(name)
 
     # Write pngw.
-    # name = os.path.join(output_path, base + '_light_perc.pngw')
-    # sr.write_affine(name, affine)
+    name = os.path.join(output_path, base + '_light_perc.pngw')
+    sr.write_affine(name, affine)
 
-def get_radiation_product(output_path, base, sunrise, sunset, sunrise_time, sunset_time, local_date, time_zone, lat, lon, no_data):
+def get_radiation_product(sunrise, sunset, sunrise_time, sunset_time, local_date, time_zone, lat, lon, no_data):
     """Get the radiation product."""
     (x_sec, y_rad) = precompute_radiation(sunrise_time, sunset_time, local_date, time_zone, lat, lon)
 
@@ -508,8 +508,7 @@ def process_surface(surface, metadata, local_date, sunrise_time, sunset_time, ra
 
         # Radiation.
         if radiation:
-            (success, radiation_data) = get_radiation_product(output_path, base, sunrise, sunset, 
-                                                              sunrise_time, sunset_time,
+            (success, radiation_data) = get_radiation_product(sunrise, sunset, sunrise_time, sunset_time,
                                                               local_date, time_zone, lat, lon, no_data)
             if success:
                 name = os.path.join(output_path, base + '_radiation.tif')

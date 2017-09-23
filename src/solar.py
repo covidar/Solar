@@ -5,15 +5,17 @@
 import argparse
 from datetime import date
 import logging
-import sys
 import os
+import sys
 import warnings
 
 # Solar defined code.
 import solar_utility as su
 import solar_angle_processor as sa
 
-logging.basicConfig(filename='./logs/solar.log', format ='%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s', datefmt = "%Y-%m-%d %H:%M:%S", filemode='w', level=logging.INFO)
+logging.basicConfig(filename='./logs/solar.log',
+                    format ='%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s',
+                    datefmt = "%Y-%m-%d %H:%M:%S", filemode='w', level=logging.INFO)
 
 # Don't warn for Future stuff.
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -61,7 +63,8 @@ def main():
     # Get the sunrise and sunset.
     lat = metadata[4]
     lon = metadata[5]
-    (sunrise, sunset) = su.get_sun_rise_set(args.year, args.month, args.day, args.time_zone, lat, lon)
+    (sunrise, sunset) = su.get_sun_rise_set(args.year, args.month, args.day, args.time_zone,
+                                            lat, lon)
     # Get the date.
     local_date = date(args.year, args.month, args.day)
 
@@ -74,7 +77,8 @@ def main():
     metadata.append(args.surface)
 
     # Process the surface.
-    sa.process_surface(surface, metadata, local_date, sunrise, sunset, args.radiation, args.tiff, args.workers)
+    sa.process_surface(surface, metadata, local_date, sunrise, sunset, args.radiation, args.tiff,
+                       args.workers)
 
     # Clean up the temporary file.
     if resampled:
