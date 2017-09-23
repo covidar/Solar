@@ -64,6 +64,8 @@ This is also runnable by using the run_example.sh script in the root folder.
 
 ![Percent Light](/examples/Patch_DEM_2016-09-14_light_perc.png)
 
+In this example it shows a small area of a hillside with some trees. The area with a lower percentage is covered with trees.
+
 # Tests
 These are under developement and will evolve into validating the science when ground truth is available. These will likely steer the develeopment work.
 
@@ -71,7 +73,8 @@ nosetests --with-cov --cov-report html  tests/
 
 This is also runnable by using the run_tests.sh script in the root folder.
 
-Link to the HTML output
+# Acknowledgements
+The help and inspiration of Autonomous Imagery.
 
 # Feedback
 
