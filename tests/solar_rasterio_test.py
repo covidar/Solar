@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
+import logging
 import os
 import unittest
+
 import solar_rasterio as sr
 
 logging.basicConfig(filename='solar_rasterio_test.log', format='%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s', datefmt="%Y-%m-%d %H:%M:%S", filemode='w', level=logging.DEBUG)

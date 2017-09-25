@@ -2,6 +2,9 @@
 
 """Angle processing."""
 
+import matplotlib
+matplotlib.use('Agg')
+
 import concurrent.futures
 import logging
 import math

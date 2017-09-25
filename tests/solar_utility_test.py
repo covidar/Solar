@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
-import unittest
 
-import os
-import numpy as np
 from datetime import datetime, date, time
+import logging
+import numpy as np
+import os
 import pytz
 import skimage.io as io
+import unittest
 
 from solar_utility import get_seconds_from_datetime, get_time_from_seconds, get_sun_rise_set, create_image, get_processing_times, get_datetime, combine_datetime, log
 

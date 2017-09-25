@@ -147,7 +147,7 @@
 <p id="n78" class="stm run hide_run"><a href="#n78">78</a></p>
 <p id="n79" class="pln"><a href="#n79">79</a></p>
 <p id="n80" class="stm run hide_run"><a href="#n80">80</a></p>
-<p id="n81" class="stm run hide_run"><a href="#n81">81</a></p>
+<p id="n81" class="pln"><a href="#n81">81</a></p>
 <p id="n82" class="stm run hide_run"><a href="#n82">82</a></p>
 <p id="n83" class="stm run hide_run"><a href="#n83">83</a></p>
 <p id="n84" class="stm run hide_run"><a href="#n84">84</a></p>
@@ -155,9 +155,10 @@
 <p id="n86" class="stm run hide_run"><a href="#n86">86</a></p>
 <p id="n87" class="stm run hide_run"><a href="#n87">87</a></p>
 <p id="n88" class="stm run hide_run"><a href="#n88">88</a></p>
-<p id="n89" class="pln"><a href="#n89">89</a></p>
-<p id="n90" class="stm run hide_run"><a href="#n90">90</a></p>
+<p id="n89" class="stm run hide_run"><a href="#n89">89</a></p>
+<p id="n90" class="pln"><a href="#n90">90</a></p>
 <p id="n91" class="stm run hide_run"><a href="#n91">91</a></p>
+<p id="n92" class="stm run hide_run"><a href="#n92">92</a></p>
 
             </td>
             <td class="text">
@@ -165,8 +166,8 @@
 <p id="t2" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t3" class="stm run hide_run"><span class="str">"""Utility functions."""</span><span class="strut">&nbsp;</span></p>
 <p id="t4" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t5" class="stm run hide_run"><span class="key">import</span> <span class="nam">logging</span><span class="strut">&nbsp;</span></p>
-<p id="t6" class="stm run hide_run"><span class="key">from</span> <span class="nam">datetime</span> <span class="key">import</span> <span class="nam">datetime</span><span class="op">,</span> <span class="nam">date</span><span class="op">,</span> <span class="nam">time</span><span class="strut">&nbsp;</span></p>
+<p id="t5" class="stm run hide_run"><span class="key">from</span> <span class="nam">datetime</span> <span class="key">import</span> <span class="nam">datetime</span><span class="op">,</span> <span class="nam">date</span><span class="op">,</span> <span class="nam">time</span><span class="strut">&nbsp;</span></p>
+<p id="t6" class="stm run hide_run"><span class="key">import</span> <span class="nam">logging</span><span class="strut">&nbsp;</span></p>
 <p id="t7" class="stm run hide_run"><span class="key">import</span> <span class="nam">numpy</span> <span class="key">as</span> <span class="nam">np</span><span class="strut">&nbsp;</span></p>
 <p id="t8" class="stm run hide_run"><span class="key">from</span> <span class="nam">pysolar</span><span class="op">.</span><span class="nam">util</span> <span class="key">import</span> <span class="nam">get_sunrise_sunset</span><span class="strut">&nbsp;</span></p>
 <p id="t9" class="stm run hide_run"><span class="key">import</span> <span class="nam">pytz</span><span class="strut">&nbsp;</span></p>
@@ -241,17 +242,18 @@
 <p id="t78" class="stm run hide_run">    <span class="key">return</span> <span class="nam">times</span><span class="strut">&nbsp;</span></p>
 <p id="t79" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t80" class="stm run hide_run"><span class="key">def</span> <span class="nam">log</span><span class="op">(</span><span class="nam">level</span><span class="op">,</span> <span class="nam">log_message</span><span class="op">,</span> <span class="nam">stdout</span><span class="op">=</span><span class="key">False</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t81" class="stm run hide_run">    <span class="key">if</span> <span class="nam">level</span> <span class="op">==</span> <span class="str">'debug'</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t82" class="stm run hide_run">        <span class="nam">logging</span><span class="op">.</span><span class="nam">debug</span><span class="op">(</span><span class="nam">log_message</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t83" class="stm run hide_run">    <span class="key">if</span> <span class="nam">level</span> <span class="op">==</span> <span class="str">'info'</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t84" class="stm run hide_run">        <span class="nam">logging</span><span class="op">.</span><span class="nam">info</span><span class="op">(</span><span class="nam">log_message</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t85" class="stm run hide_run">    <span class="key">if</span> <span class="nam">level</span> <span class="op">==</span> <span class="str">'warn'</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t86" class="stm run hide_run">        <span class="nam">logging</span><span class="op">.</span><span class="nam">warn</span><span class="op">(</span><span class="nam">log_message</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t87" class="stm run hide_run">    <span class="key">if</span> <span class="nam">level</span> <span class="op">==</span> <span class="str">'error'</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t88" class="stm run hide_run">        <span class="nam">logging</span><span class="op">.</span><span class="nam">error</span><span class="op">(</span><span class="nam">log_message</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t89" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t90" class="stm run hide_run">    <span class="key">if</span> <span class="nam">stdout</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t91" class="stm run hide_run">        <span class="nam">print</span><span class="op">(</span><span class="nam">log_message</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t81" class="pln">    <span class="str">"""Logging simplification."""</span><span class="strut">&nbsp;</span></p>
+<p id="t82" class="stm run hide_run">    <span class="key">if</span> <span class="nam">level</span> <span class="op">==</span> <span class="str">'debug'</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t83" class="stm run hide_run">        <span class="nam">logging</span><span class="op">.</span><span class="nam">debug</span><span class="op">(</span><span class="nam">log_message</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t84" class="stm run hide_run">    <span class="key">if</span> <span class="nam">level</span> <span class="op">==</span> <span class="str">'info'</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t85" class="stm run hide_run">        <span class="nam">logging</span><span class="op">.</span><span class="nam">info</span><span class="op">(</span><span class="nam">log_message</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t86" class="stm run hide_run">    <span class="key">if</span> <span class="nam">level</span> <span class="op">==</span> <span class="str">'warn'</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t87" class="stm run hide_run">        <span class="nam">logging</span><span class="op">.</span><span class="nam">warn</span><span class="op">(</span><span class="nam">log_message</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t88" class="stm run hide_run">    <span class="key">if</span> <span class="nam">level</span> <span class="op">==</span> <span class="str">'error'</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t89" class="stm run hide_run">        <span class="nam">logging</span><span class="op">.</span><span class="nam">error</span><span class="op">(</span><span class="nam">log_message</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t90" class="pln"><span class="strut">&nbsp;</span></p>
+<p id="t91" class="stm run hide_run">    <span class="key">if</span> <span class="nam">stdout</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t92" class="stm run hide_run">        <span class="nam">print</span><span class="op">(</span><span class="nam">log_message</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 
             </td>
         </tr>
@@ -262,7 +264,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.4.1</a>,
-            created at 2017-09-22 21:47
+            created at 2017-09-25 08:04
         </p>
     </div>
 </div>

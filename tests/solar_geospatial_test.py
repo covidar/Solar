@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
+import logging
 import unittest
+
 from solar_geospatial import is_valid_utm_epsg, get_utm_zone_and_hemisphere, get_lat_lon, get_utm_epsg_from_epsg
  
- logging.basicConfig(filename='solar_geospatial_test.log', format='%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s', datefmt="%Y-%m-%d %H:%M:%S", filemode='w', level=logging.DEBUG)
+logging.basicConfig(filename='solar_geospatial_test.log', format='%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s', datefmt="%Y-%m-%d %H:%M:%S", filemode='w', level=logging.DEBUG)
 
 class TestGeospatial(unittest.TestCase):
  
