@@ -40,7 +40,8 @@ TBD
 ## Commandline options
 usage: solar.py [-h] -s SURFACE -o OUTPUT_PATH -y YEAR -m MONTH -d DAY
                 [-n NO_DATA] [-t TIME_ZONE] [-i INCREMENTS] [-g GSD] [-r] [-f]
-                [-w WORKERS]
+                [-w WORKERS] [-c CMAP]
+solar.py: error: the following arguments are required: -s/--surface, -o/--output_path, -y/--year, -m/--month, -d/--day
 
 -s - DEM in the form of a TIFF with appopriate georeferencing
 -o - Output path for the results
@@ -54,6 +55,7 @@ usage: solar.py [-h] -s SURFACE -o OUTPUT_PATH -y YEAR -m MONTH -d DAY
 -r - Compute the radiation
 -f - Write the output files in TIFF form
 -w - Number of threads to use, ideally the number of increments
+-c - CMAP from [Matplotlib](https://matplotlib.org/users/colormaps.html) for coloring the output
 
 ## Example
 python3 ./src/solar.py -s ./tests/data/Patch_DEM.tif -o ./tests/results/ -y 2016 -m 9 -d 14 -w 3 -i 5 -f
