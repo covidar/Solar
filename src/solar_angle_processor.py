@@ -55,8 +55,8 @@ def process_column(col_data, no_data):
     elevation = np.array(elevation)
     position = np.array(position)
 
-    # Create the array of angles.
-    angles = su.create_image((length), 0.0)
+    # Create the array of ratios.
+    ratios = su.create_image((length), 0.0)
 
     # Work out the maximum angle.
     for indx in range(len(elevation) - 1):
@@ -70,12 +70,15 @@ def process_column(col_data, no_data):
         delta_ratio = delta_ele / delta_len
 
         # Get the angle between the reference and the next.
+        # Does this to the end.
         for j in range(len(delta_ele)):
-            angles[j] = math.atan(delta_ratio[j])
+            ratios[j] = delta_ratio[j]
 
         # Find the max angle position.
         pos = int(delta_pos)
-        result[pos] = math.degrees(np.amax(angles))
+        max_ratio = np.amax(ratios)
+        max_angle = math.atan(max_ratio)
+        result[pos] = math.degrees(max_angle)
 
     return result
 
@@ -276,7 +279,7 @@ def load_surface(surface_file):
 
     return success, padded, metadata
 
-def get_colormap(output_path, base, title, sunrise_time, sunset_time, percentage_light, affine):
+def get_colormap(output_path, base, title, sunrise_time, sunset_time, percentage_light, affine, color_scheme):
     """Write colormap."""
     name = os.path.join(output_path, base + '_light_perc.png')
     logging.info('Saving color map data (%s)' % (name))
@@ -290,7 +293,7 @@ def get_colormap(output_path, base, title, sunrise_time, sunset_time, percentage
     fig = plt.figure()
     fig.set_size_inches(width_inches + 1, height_inches)
     ax = plt.subplot(111)
-    im = ax.imshow(percentage_light, cmap = 'hot')
+    im = ax.imshow(percentage_light, cmap = color_scheme)
     plt.title(title)
     fig.suptitle('Percentage of daylight', fontsize=12)
     plt.xlabel(sr_ss_text)
@@ -381,7 +384,7 @@ def process_time(time, local_date, time_zone, lat, lon, surface, no_data):
     logging.info('Sun azimuth: %.5f', sun_azimuth)
 
     # Rotate the DEM to make the sun be at the bottom.
-    rotation_angle = sun_azimuth + 180.0
+    rotation_angle = sun_azimuth
     rotated_surface = sr.rotate_image(surface, rotation_angle)
 
     # Work out the max angle from a point to the surface.
@@ -402,7 +405,7 @@ def process_time(time, local_date, time_zone, lat, lon, surface, no_data):
     tmp = [time, rotated_delta.copy()]
     return tmp
 
-def process_surface(surface, metadata, local_date, sunrise_time, sunset_time, radiation, tiff, workers):
+def process_surface(surface, metadata, local_date, sunrise_time, sunset_time, radiation, tiff, cmap, workers):
     """Process the surface data."""
     logging.info('Processing surface...')
 
@@ -506,13 +509,12 @@ def process_surface(surface, metadata, local_date, sunrise_time, sunset_time, ra
         bar.update(1)
 
         # Colored image.
-        get_colormap(output_path, base, local_date.isoformat(), sunrise_time, sunset_time, percentage_light, affine)
+        get_colormap(output_path, base, local_date.isoformat(), sunrise_time, sunset_time, percentage_light, affine, cmap)
         bar.update(1)
 
         # Radiation.
         if radiation:
-            (success, radiation_data) = get_radiation_product(sunrise, sunset, sunrise_time, sunset_time,
-                                                              local_date, time_zone, lat, lon, no_data)
+            (success, radiation_data) = get_radiation_product(sunrise, sunset,     sunrise_time, sunset_time, local_date, time_zone, lat, lon, no_data)
             if success:
                 name = os.path.join(output_path, base + '_radiation.tif')
                 logging.info('Saving radiation data (%s)' % (name))

@@ -13,7 +13,7 @@ import warnings
 import solar_utility as su
 import solar_angle_processor as sa
 
-logging.basicConfig(filename='./logs/solar.log',
+logging.basicConfig(filename='solar.log',
                     format ='%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s',
                     datefmt = "%Y-%m-%d %H:%M:%S", filemode='w', level=logging.INFO)
 
@@ -35,6 +35,7 @@ def arg_parse():
     parser.add_argument('-r', '--radiation', dest='radiation', action='store_true')
     parser.add_argument('-f', '--tiff', dest='tiff', action='store_true')
     parser.add_argument('-w', '--workers', type=int, default=4)
+    parser.add_argument('-c', '--cmap', type=str, default='hot')
     parser.set_defaults(radiation=False)
     parser.set_defaults(tiff=False)
     args = parser.parse_args()
@@ -77,8 +78,7 @@ def main():
     metadata.append(args.surface)
 
     # Process the surface.
-    sa.process_surface(surface, metadata, local_date, sunrise, sunset, args.radiation, args.tiff,
-                       args.workers)
+    sa.process_surface(surface, metadata, local_date, sunrise, sunset, args.radiation, args.tiff, args.cmap, args.workers)
 
     # Clean up the temporary file.
     if resampled:
