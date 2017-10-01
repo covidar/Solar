@@ -35,7 +35,7 @@ def arg_parse():
     parser.add_argument('-r', '--radiation', dest='radiation', action='store_true')
     parser.add_argument('-f', '--tiff', dest='tiff', action='store_true')
     parser.add_argument('-w', '--workers', type=int, default=4)
-    parser.add_argument('-c', '--cmap', type=str, default='hot')
+    parser.add_argument('-c', '--cmap', type=str, default='jet')
     parser.set_defaults(radiation=False)
     parser.set_defaults(tiff=False)
     args = parser.parse_args()
