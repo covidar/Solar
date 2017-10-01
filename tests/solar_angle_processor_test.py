@@ -225,8 +225,9 @@ class TestAngleProcessor(unittest.TestCase):
         metadata.append(filename)
         radiation = False
         tiff = False
+        cmap = 'hot'
         workers = 1
-        sa.process_surface(surface, metadata, local_date, sunrise, sunset, radiation, tiff, workers)
+        sa.process_surface(surface, metadata, local_date, sunrise, sunset, radiation, tiff, cmap, workers)
         self.assertTrue(os.path.exists('./tests/results/Patch_DEM_2017-07-01_light_perc.png'))
 
     def test_process_surface_2(self):
@@ -249,8 +250,9 @@ class TestAngleProcessor(unittest.TestCase):
         metadata.append(filename)
         radiation = False
         tiff = True
+        cmap = 'hot'
         workers = 1
-        sa.process_surface(surface, metadata, local_date, sunrise, sunset, radiation, tiff, workers)
+        sa.process_surface(surface, metadata, local_date, sunrise, sunset, radiation, tiff, cmap, workers)
         self.assertTrue(os.path.exists('./tests/results/Patch_DEM_2017-08-02_light_perc.png'))
         self.assertTrue(os.path.exists('./tests/results/Patch_DEM_2017-08-02_light_perc.tif'))
         self.assertTrue(os.path.exists('./tests/results/Patch_DEM_2017-08-02_light_secs.tif'))
@@ -277,8 +279,9 @@ class TestAngleProcessor(unittest.TestCase):
         metadata.append(filename)
         radiation = True
         tiff = False
+        cmap = 'hot'
         workers = 1
-        sa.process_surface(surface, metadata, local_date, sunrise, sunset, radiation, tiff, workers)
+        sa.process_surface(surface, metadata, local_date, sunrise, sunset, radiation, tiff, cmap, workers)
         self.assertTrue(os.path.exists('./tests/results/Patch_DEM_2017-09-03_light_perc.png'))
         self.assertTrue(os.path.exists('./tests/results/Patch_DEM_2017-09-03_radiation.tif'))
 

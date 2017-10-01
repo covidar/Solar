@@ -61,7 +61,7 @@ def process_column(col_data, no_data):
     # Work out the maximum angle.
     for indx in range(len(elevation) - 1):
         # Reset the angles to zeros.
-        angles *= 0.0
+        ratios *= 0.0
 
         # Difference from the reference point, i.
         delta_ele = elevation[indx+1:] - elevation[indx]
