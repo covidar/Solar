@@ -44,6 +44,10 @@ def arg_parse():
 
 def main():
     """Main function."""
+    # Validate the version of python.
+    if sys.version_info[0] < 3: 
+        raise "Must be using Python 3 to run solar."
+
     logging.info('Starting...')
 
     # Parse the arguments.
