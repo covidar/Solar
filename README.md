@@ -1,7 +1,7 @@
 # Solar
 This is an application that takes DEM's, typically made from drone data, and uses the movement of the Sun to predict the percentage of daylight. This obviously has applications in Solar panel analysis and agriculture.
 
-# Techonolgy
+# Technolgy
 ## Idea
 Given that we have been given the opportunity to create our own maps and indeed surface models through drones it made sense to enable solar analysis of the data. Other web based products are based on old data, sometimes many years out of date, and this allows the computation hours after collection.
 
